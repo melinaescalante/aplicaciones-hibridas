@@ -1,24 +1,19 @@
-const http = require('http')
-const port = 4000
-const server = http.createServer((request, response) => {
-    response.writeHead(200, { 'Content-Type': 'text/plain' })
 
-    const url = request.url
+const ProductManager = require("./ProductManager.js");
 
-    if (url == '/') {
-        response.end('home')
-    } else if (url == '/coffee') {
-        response.end('Lista de cafes')
-    } else if (url == '/contact') {
-        response.end('Lista de contactos')
-    } else {
-        response.writeHead(404, { 'Content-Type': 'text/plain' })
-        response.end('Error 404, ruta no encontrada')
+const manager=new ProductManager()
+const product={id: 9,
+    title: "Monitor Lg 28 pulgadas",
+    description: "Monitor Lg 28 pulgadas nuevo de color Negro",
+    price: 10000,
+    image: "",
+    stock: 1}
+// manager.addProduct(product)
+// console.log(manager.getProducts())
+// manager.addProductJson(product)
+manager.readJson().then(data=> console.table(data)) 
 
 
-    }
-    // response.end('Hola Aplicaciones Hibridas!')
-})
-server.listen(port, () => {
-    console.log('Escuchando el puerto ' + port)
-})
+
+
+
