@@ -1,0 +1,19 @@
+{
+  "name": "clase-06",
+  "version": "1.0.0",
+  "description": "Clase 6 de aplicaciones híbridas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "npm",
+    "node"
+  ],
+  "author": "Melina Escalante",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  }
+}
