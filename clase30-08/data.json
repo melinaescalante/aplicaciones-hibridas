@@ -1,0 +1,42 @@
+[
+  {
+    "id": 7,
+    "title": "Monitor Lg 27 pulgadas",
+    "description": "Monitor Lg 27 pulgadas nuevo de color Negro",
+    "price": 300000,
+    "image": "",
+    "stock": 1
+  },
+  {
+    "id": 6,
+    "title": "Monitor Lg 29 pulgadas",
+    "description": "Monitor Lg 29 pulgadas nuevo de color Negro",
+    "price": 200000,
+    "image": "",
+    "stock": 1
+  },
+  {
+    "id": 8,
+    "title": "Monitor Lg 28 pulgadas",
+    "description": "Monitor Lg 28 pulgadas nuevo de color Negro",
+    "price": 10000,
+    "image": "",
+    "stock": 1
+  },
+  {
+    "id": 9,
+    "title": "Monitor Lg 28 pulgadas",
+    "description": "Monitor Lg 28 pulgadas nuevo de color Negro",
+    "price": 10000,
+    "image": "",
+    "stock": 1
+  },
+  {
+    "id": 9,
+    "title": "Monitor Lg 28 pulgadas",
+    "description": "Monitor Lg 28 pulgadas nuevo de color Negro",
+    "price": 10000,
+    "image": "",
+    "stock": 1
+  }
+]
