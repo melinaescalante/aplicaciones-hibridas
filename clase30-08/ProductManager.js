@@ -1,7 +1,8 @@
 const fs = require("fs/promises");
+const crypto = require("crypto");
 class ProductManager {
   products = [];
-  path = "data.json";
+  path = "data/data.json";
   constructor() {
     this.readJson();
   }
@@ -26,6 +27,8 @@ class ProductManager {
   }
 
   async addProductJson(product) {
+    const id= crypto.randomUUID()
+    product.id= id
     await this.readJson();
 
     this.products.push(product);
@@ -37,9 +40,20 @@ class ProductManager {
       if (!findProduct != []) {
         console.error("Not Found");
       } else {
-        console.log(findProduct)
         return findProduct;
       }
+  }
+  async updateProduct(id, title, description,price,image,stock){
+    const findProduct = this.products.filter((product) => product.id === id);
+    if (title|| description|| price || image || stock) {
+      findProduct.title=title
+      findProduct.description=description
+      findProduct.price=price
+      findProduct.image=image
+      findProduct.stock=stock
+    
     }
+    
+  }
 }
 module.exports = ProductManager;

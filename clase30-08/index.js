@@ -13,36 +13,58 @@ app.get("/", (request, response) => {
 
 //Ruta Productos
 
-app.get("/products", (request, response) => {
-  response.send("Productos");
+app.get("/products", async (request, response) => {
+  const productos= await manager.products;
+  response.send(`Productos <br> ${JSON.stringify(productos)}`);
   console.log(chalk.cyan("Cliente ingresó a la sección de productos"));
 });
 //Ruta con parametros
 const manager = new ProductManager();
 
-app.get("/products/:id", async (request, response) => {
+app.get("/product/:id", async (request, response) => {
   const id = parseInt(request.params.id);
   const producto =await manager.getProductById(id);
-  response.send(JSON.stringify(producto));
-  console.log(chalk.cyan(`Cliente ingresó al producto: ${JSON.stringify(producto)}`));
+  if(producto){
+    response.status(202).json({ producto: producto});
+
+  }else{
+    response.status(400).json({mensaje: 'No existe producto'})
+  }
 });
+// Post products
 app.post("/products", async (request, response) => {
   const product = request.body;
-  console.log('Cliente en la ruta POST: /products')
-  console.log(product)
-  if( product.name && product.price){
-      res.status(202).json({ mensaje: 'Producto Guardado'});
-
+  if( product.title && product.description && product.price && product.image && product.stock){
+    await manager.addProductJson(product)
+      response.status(202).json({ mensaje: 'Producto Guardado'});
   } else {
-      res.status(400).json({ mensaje: 'Producto Invalido'});
-
+      response.status(400).json({ mensaje: 'Producto Incompleto'});
   }
-
-
 });
+// Delete product
+app.delete("/product/:id", async (request, response)=>{
+  const id = parseInt(request.params.id);
+  const product =await manager.getProductById(id)
+  console.log(product)
+  if (product) {
+    response.status(200).json({mensaje: "Producto eliminado"})
+  } else {
+    response.status(400).json({mensaje: "Producto no se ha podido eliminar"}) 
+  }
+})
+//Put product
+app.put("/product/:id", async(request,response)=>{
+  const id = parseInt(request.params.id);
+  const product =await manager.getProductById(id)
+  const information = request.body;
 
+  manager.updateProduct(id,information.title, information.description, information.price, information.image, information.stock)
+  if (product) {
+    response.status(202).json({Producto: product})
+  } else {
+    response.status(400).json({mensaje: "No existe producto"})
+  }
+})
 app.listen(port, () => {
   console.log(chalk.yellow(`Servidor escuchando en el puerto 3000 a la app`));
 });
-
-// manager.readJson().then((data) => console.table(data));
