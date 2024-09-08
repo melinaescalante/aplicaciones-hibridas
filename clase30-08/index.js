@@ -57,14 +57,17 @@ app.put("/product/:id", async(request,response)=>{
   const id = parseInt(request.params.id);
   const product =await manager.getProductById(id)
   const information = request.body;
+  console.log(information.title, information.description, information.price, information.image, information.stock)
 
   manager.updateProduct(id,information.title, information.description, information.price, information.image, information.stock)
+
   if (product) {
-    response.status(202).json({Producto: product})
+    response.status(202).json({mensaje:"Producto correctamente actualizado"})
   } else {
     response.status(400).json({mensaje: "No existe producto"})
   }
 })
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(chalk.yellow(`Servidor escuchando en el puerto 3000 a la app`));
+  
 });

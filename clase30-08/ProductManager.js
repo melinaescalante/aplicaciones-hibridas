@@ -44,8 +44,9 @@ class ProductManager {
       }
   }
   async updateProduct(id, title, description,price,image,stock){
-    const findProduct = this.products.filter((product) => product.id === id);
+    const findProduct = await this.products.find((product) => product.id === id);
     if (title|| description|| price || image || stock) {
+      console.log(findProduct.title)
       findProduct.title=title
       findProduct.description=description
       findProduct.price=price
@@ -53,7 +54,8 @@ class ProductManager {
       findProduct.stock=stock
     
     }
-    
+    await this.writeJson()
+    // return await this.getProductById(id)
   }
 }
 module.exports = ProductManager;

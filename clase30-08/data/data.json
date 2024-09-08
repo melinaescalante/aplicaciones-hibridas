@@ -1,11 +1,11 @@
 [
   {
     "id": 7,
-    "title": "Monitor Lg 27 pulgadas",
-    "description": "Monitor Lg 27 pulgadas nuevo de color Negro",
-    "price": 300000,
+    "title": "Television",
+    "description": "Television de color Negro",
+    "price": 1000,
     "image": "",
-    "stock": 1
+    "stock": 10
   },
   {
     "id": 6,
